@@ -8,9 +8,9 @@
 #include "functions.h"
 
 struct SstdInfo {
-	char cSurname[20];
-	char cName[20];
-	char cBirth[11];
+	char chSurname[20];
+	char chName[20];
+	char chBirth[11];
 	int nMarks[6];
 	double nMarkAvg;
 	struct SstdInfo *pNext;
@@ -22,7 +22,8 @@ int main()
 	char cAnswer, cFileAdress[100], cFileString[100], cStrtokLimits[] = " ";
 	char* pcStrtokPtr = NULL;
 	int nStateFileChecker, nStudentCnt;
-	struct SstdInfo* pHead = NULL, * pCur = (struct SstdInfo*)malloc(sizeof(struct SstdInfo));;
+	struct SstdInfo* pHead = NULL,
+	*pCur = (struct SstdInfo*)malloc(sizeof(struct SstdInfo));;
 	FILE* pfOpenedFile = NULL;
 
 	//CHOOSE1
@@ -45,14 +46,16 @@ int main()
   switch (cAnswer) {
   case '1': {
 	printf("Enter the info about student or enter \"end\", if you want to stop:\n>:");
-	InsertStudentElementByKeyboard(cFileString, cStrtokLimits, pcStrtokPtr, pCur, &pHead, &nStudentCnt);
+	InsertStudentElementByKeyboard(cFileString, cStrtokLimits, 
+		pcStrtokPtr, pCur, &pHead, &nStudentCnt);
 	PrintStudentTable(pCur, pHead, nStudentCnt);
 	break;
 	}
   case '2': {
 	printf("Enter the file location. Example: D:\\file\\...\\file.txt\n>:");
 	OpenFile(&pfOpenedFile, cFileAdress);
-	InsertStudentElementFromFile(pfOpenedFile, cFileString, cStrtokLimits, pcStrtokPtr, pCur, &pHead, &nStudentCnt);
+	InsertStudentElementFromFile(pfOpenedFile, cFileString, 
+		cStrtokLimits, pcStrtokPtr, pCur, &pHead, &nStudentCnt);
 	PrintStudentTable(pCur, pHead, nStudentCnt);
 	printf("Do you want to vanish students with two \"2\" marks?\n");
 	printf("1)Yes.\n0)No.\n:>");
@@ -110,7 +113,8 @@ int main()
 		do {
 		  rewind(stdin);
 		  scanf("%s", cFileAdress);
-		} while (OpenFileForSave(&pfOpenedFile, cFileAdress, pCur, pHead, nStudentCnt, nStateFileChecker) == (-1));
+		} while (OpenFileForSave(&pfOpenedFile, cFileAdress, pCur,
+			pHead, nStudentCnt, nStateFileChecker) == (-1));
 		printf("File has been succesfully created. Table saved.");
 		break;
 	  }

@@ -10,9 +10,9 @@
 #define NUM_WIDTH_OF_TABLE 128
 
 struct SstdInfo {
-	char cSurname[20];
-	char cName[20];
-	char cBirth[11];
+	char chSurname[20];
+	char chName[20];
+	char chBirth[11];
 	int nMarks[6];
 	double nMarkAvg;
 	struct SstdInfo *pNext;
@@ -64,25 +64,25 @@ void InsertElementIntoList(struct SstdInfo* pCurStudent, struct SstdInfo** ppSki
 //
 void InsertStudentElementFromFile(
 	FILE *pfOpenedFile,
-	char cFileString[], 
-	char cStrtokLimits[], 
-	char *pcStrtokPtr, 
+	char chFileString[], 
+	char chStrtokLimits[], 
+	char *pchStrtokPtr, 
 	struct SstdInfo *pCur, 
 	struct SstdInfo **ppHead, 
 	int *pnStudentsCnt) {
   static sEnters = 0;
   int nStudentCnt = sEnters;
-  while (fgets(cFileString, 100, pfOpenedFile)) {
-	pcStrtokPtr = strtok(cFileString, cStrtokLimits);
-	strcpy(pCur->cSurname, pcStrtokPtr);
-	pcStrtokPtr = strtok(NULL, cStrtokLimits);
-	strcpy(pCur->cName, pcStrtokPtr);
-	pcStrtokPtr = strtok(NULL, cStrtokLimits);
-	strcpy(pCur->cBirth, pcStrtokPtr);
+  while (fgets(chFileString, 100, pfOpenedFile)) {
+	pchStrtokPtr = strtok(chFileString, chStrtokLimits);
+	strcpy(pCur->chSurname, pchStrtokPtr);
+	pchStrtokPtr = strtok(NULL, chStrtokLimits);
+	strcpy(pCur->chName, pchStrtokPtr);
+	pchStrtokPtr = strtok(NULL, chStrtokLimits);
+	strcpy(pCur->chBirth, pchStrtokPtr);
 	pCur->nMarkAvg = 0;
 	for (int j = 0; j < NUM_AMOUNT_OF_MARKS; j++) {
-	  pcStrtokPtr = strtok(NULL, cStrtokLimits);
-	  pCur->nMarks[j] = atoi(pcStrtokPtr);
+	  pchStrtokPtr = strtok(NULL, chStrtokLimits);
+	  pCur->nMarks[j] = atoi(pchStrtokPtr);
 	  pCur->nMarkAvg += pCur->nMarks[j];
 	}
 	pCur->nMarkAvg = pCur->nMarkAvg / NUM_AMOUNT_OF_MARKS;
@@ -112,9 +112,9 @@ void InsertStudentElementFromFile(
 //Створення списку студентів за допомогою зчитування з клавіатури
 //
 void InsertStudentElementByKeyboard(
-	char cFileString[], 
-	char cStrtokLimits[],
-	char *pcStrtokPtr,
+	char chFileString[], 
+	char chStrtokLimits[],
+	char *pchStrtokPtr,
 	struct SstdInfo *pCurStudent, 
 	struct SstdInfo **pHeadStudent,
 	int *pnStudentCnt) {
@@ -122,20 +122,20 @@ void InsertStudentElementByKeyboard(
   int nStudentCnt = sEnters;
   while (1) {
 	rewind(stdin);
-	fgets(cFileString, 100, stdin);
-	if (strstr(cFileString, "end")) {
+	fgets(chFileString, 100, stdin);
+	if (strstr(chFileString, "end")) {
 	  break;
 	}
-	pcStrtokPtr = strtok(cFileString, cStrtokLimits);
-	strcpy(pCurStudent->cSurname, pcStrtokPtr);
-	pcStrtokPtr = strtok(NULL, cStrtokLimits);
-	strcpy(pCurStudent->cName, pcStrtokPtr);
-	pcStrtokPtr = strtok(NULL, cStrtokLimits);
-	strcpy(pCurStudent->cBirth, pcStrtokPtr);
+	pchStrtokPtr = strtok(chFileString, chStrtokLimits);
+	strcpy(pCurStudent->chSurname, pchStrtokPtr);
+	pchStrtokPtr = strtok(NULL, chStrtokLimits);
+	strcpy(pCurStudent->chName, pchStrtokPtr);
+	pchStrtokPtr = strtok(NULL, chStrtokLimits);
+	strcpy(pCurStudent->chBirth, pchStrtokPtr);
 	pCurStudent->nMarkAvg = 0;
 	for (int j = 0; j < 6; j++) {
-	  pcStrtokPtr = strtok(NULL, cStrtokLimits);
-	  pCurStudent->nMarks[j] = atoi(pcStrtokPtr);
+	  pchStrtokPtr = strtok(NULL, chStrtokLimits);
+	  pCurStudent->nMarks[j] = atoi(pchStrtokPtr);
 	  pCurStudent->nMarkAvg += pCurStudent->nMarks[j];
 	}
 	pCurStudent->nMarkAvg = pCurStudent->nMarkAvg / 6;
@@ -192,9 +192,9 @@ void PrintStudentTable(
   PrintTableLines();
   for (int j = 0; j < nStudentCnt; j++) {
 	printf("\n|%-20s\t|%-20s\t|%-10s\t| %-5d | %-7d | %-6d | %-5d | %-5d | %-7d | %-7.2lf |\n",
-		pStartFrom->cSurname,
-		pStartFrom->cName,
-		pStartFrom->cBirth,
+		pStartFrom->chSurname,
+		pStartFrom->chName,
+		pStartFrom->chBirth,
 		pStartFrom->nMarks[0],
 		pStartFrom->nMarks[1],
 		pStartFrom->nMarks[2],
@@ -257,7 +257,7 @@ void FreeMemmoryForStudentsList(struct SstdInfo *pHeadStudent) {
 //Створення нового елементу та вставка його в список одразу із сортуванням
 //
 void CreateElementAndInsertThisIntoList(
-	char cStrtokLimits[],
+	char chStrtokLimits[],
 	struct SstdInfo **ppHeadStudent,
 	int *nStudentCnt) {
   struct SstdInfo *pNewInsertedElement = (struct SstdInfo*)malloc(sizeof(struct SstdInfo));
@@ -266,15 +266,15 @@ void CreateElementAndInsertThisIntoList(
   printf("\nEnter the info about student: ");
   rewind(stdin);
   fgets(cInfoString, 100, stdin);
-  cStrTokPtr = strtok(cInfoString, cStrtokLimits);
-  strcpy(pNewInsertedElement->cSurname, cStrTokPtr);
-  cStrTokPtr = strtok(NULL, cStrtokLimits);
-  strcpy(pNewInsertedElement->cName, cStrTokPtr);
-  cStrTokPtr = strtok(NULL, cStrtokLimits);
-  strcpy(pNewInsertedElement->cBirth, cStrTokPtr);
+  cStrTokPtr = strtok(cInfoString, chStrtokLimits);
+  strcpy(pNewInsertedElement->chSurname, cStrTokPtr);
+  cStrTokPtr = strtok(NULL, chStrtokLimits);
+  strcpy(pNewInsertedElement->chName, cStrTokPtr);
+  cStrTokPtr = strtok(NULL, chStrtokLimits);
+  strcpy(pNewInsertedElement->chBirth, cStrTokPtr);
   pNewInsertedElement->nMarkAvg = 0;
   for (int j = 0; j < NUM_AMOUNT_OF_MARKS; j++) {
-	cStrTokPtr = strtok(NULL, cStrtokLimits);
+	cStrTokPtr = strtok(NULL, chStrtokLimits);
  	pNewInsertedElement->nMarks[j] = atoi(cStrTokPtr);
 	pNewInsertedElement->nMarkAvg += pNewInsertedElement->nMarks[j];
   }
@@ -285,12 +285,12 @@ void CreateElementAndInsertThisIntoList(
 //-------------------------------------------------------------------------------
 //Відкриття файлу для зчитування списку студентів
 //
-void OpenFile(FILE **ppfFilePtr, char cFileAdress[]) {
+void OpenFile(FILE **ppfFilePtr, char chFileAdress[]) {
   while (1)
   {
 	rewind(stdin);
-	scanf("%s", cFileAdress);
-	*ppfFilePtr = fopen(cFileAdress, "r+");
+	scanf("%s", chFileAdress);
+	*ppfFilePtr = fopen(chFileAdress, "r+");
 	if (*ppfFilePtr == NULL) {
 	  printf("Error. File cannot be opened correctly.\n");
 	  printf("Try again\n>:");
@@ -310,16 +310,16 @@ void ReplicWithExit() {
 //
 int OpenFileForSave(
 	FILE **pfFIlePtr,
-	char cFileAdress[],
+	char chFileAdress[],
 	struct SstdInfo *pStartElement,
 	struct SstdInfo *pHeadStudent,
 	int nStudentCnt,
 	int nFileSateCheck) {
   pStartElement = pHeadStudent;
   if (nFileSateCheck == 1) {
-	*pfFIlePtr = fopen(cFileAdress, "w");
+	*pfFIlePtr = fopen(chFileAdress, "w");
   } else {
-	*pfFIlePtr = fopen(cFileAdress, "a");
+	*pfFIlePtr = fopen(chFileAdress, "a");
   }
   if (*pfFIlePtr == NULL)
   {
@@ -332,9 +332,9 @@ int OpenFileForSave(
 	for (int i = 0; i < nStudentCnt; i++) {
 	  if (i == nStudentCnt - 1) {
 		fprintf(*pfFIlePtr, "%s %s %s %d %d %d %d %d %d",
-			pStartElement->cSurname,
-			pStartElement->cName, 
-			pStartElement->cBirth, 
+			pStartElement->chSurname,
+			pStartElement->chName, 
+			pStartElement->chBirth, 
 			pStartElement->nMarks[0], 
 			pStartElement->nMarks[1], 
 			pStartElement->nMarks[2], 
@@ -344,9 +344,9 @@ int OpenFileForSave(
 			pStartElement->nMarkAvg);
 	  } else {
 		fprintf(*pfFIlePtr, "%s %s %s %d %d %d %d %d %d\n",
-			pStartElement->cSurname,
-			pStartElement->cName,
-			pStartElement->cBirth,
+			pStartElement->chSurname,
+			pStartElement->chName,
+			pStartElement->chBirth,
 			pStartElement->nMarks[0],
 			pStartElement->nMarks[1],
 			pStartElement->nMarks[2],
@@ -362,9 +362,9 @@ int OpenFileForSave(
 	for (int i = 0; i < nStudentCnt; i++) {
 	  if (i == nStudentCnt - 1) {
 		fprintf(*pfFIlePtr, "%s %s %s %d %d %d %d %d %d",
-			pStartElement->cSurname,
-			pStartElement->cName, 
-			pStartElement->cBirth,
+			pStartElement->chSurname,
+			pStartElement->chName, 
+			pStartElement->chBirth,
 			pStartElement->nMarks[0],
 			pStartElement->nMarks[1],
 			pStartElement->nMarks[2],
@@ -374,9 +374,9 @@ int OpenFileForSave(
 			pStartElement->nMarkAvg);
       }	else {
 		fprintf(*pfFIlePtr, "%s %s %s %d %d %d %d %d %d\n",
-			pStartElement->cSurname,
-			pStartElement->cName,
-			pStartElement->cBirth,
+			pStartElement->chSurname,
+			pStartElement->chName,
+			pStartElement->chBirth,
 			pStartElement->nMarks[0],
 			pStartElement->nMarks[1],
 			pStartElement->nMarks[2],
@@ -394,17 +394,17 @@ int OpenFileForSave(
 //-------------------------------------------------------------------------------
 //Перевірка відповідності формату серед визначениї опцій вибору відповіді в меню
 //
-int CorrectChooseOption(int nOptions, char *pcAnswer, ...) {
+int CorrectChooseOption(int nOptions, char *pchAnswer, ...) {
   va_list vlPtr;
   char cAnswerArgument;
   while (1)
   {
 	rewind(stdin);
-	scanf("%c", pcAnswer);
-	va_start(vlPtr, pcAnswer);
+	scanf("%c", pchAnswer);
+	va_start(vlPtr, pchAnswer);
 	for (int i = 0; i < nOptions; i++) {
 	  cAnswerArgument = va_arg(vlPtr, char);
-	  if (*pcAnswer == cAnswerArgument) {
+	  if (*pchAnswer == cAnswerArgument) {
 		va_end(vlPtr);
 		return 0;
 	  }

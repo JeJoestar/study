@@ -8,15 +8,15 @@
 #include <stdarg.h>
 
 //-------------------------------------------------------------------------------
-void Choose1(char cAnswer, struct SstdInfo  *pCur);
+void Choose1(char chAnswer, struct SstdInfo  *pCur);
 //-------------------------------------------------------------------------------
-void Choose2(char cAnswer, char cFileString[],
-	char cStrtokLimits[],
-	char* pcStrtokPtr,
+void Choose2(char chAnswer, char chFileString[],
+	char chStrtokLimits[],
+	char* pchStrtokPtr,
 	struct SstdInfo* pCur,
 	struct SstdInfo* pHead,
 	int* nStudentCnt,
-	FILE* pfOpenedFile, char cFileAdress[]);
+	FILE* pfOpenedFile, char chFileAdress[]);
 //-------------------------------------------------------------------------------
 void PushElementBeforeHead(struct SstdInfo *pCurStudent, struct SstdInfo **pHeadStudent);
 //-------------------------------------------------------------------------------
@@ -42,32 +42,32 @@ void VanishStudentWithTwoBadMarks(
 	int *pnStudentCnt);
 //-------------------------------------------------------------------------------
 void CreateElementAndInsertThisIntoList(
-	char cStrtokLimits[],
+	char chStrtokLimits[],
 	struct SstdInfo **ppHeadStudent,
 	int* nStudentCnt);
 //-------------------------------------------------------------------------------
 void FreeMemmoryForStudentsList(struct SstdInfo *pHeadStudent);
 //-------------------------------------------------------------------------------
 void InsertStudentElementByKeyboard(
-	char cFileString[],
-	char cStrtokLimits[],
-	char *pcStrtokPtr,
+	char chFileString[],
+	char chStrtokLimits[],
+	char *pchStrtokPtr,
 	struct SstdInfo *pCurStudent,
 	struct SstdInfo **pHeadStudent,
 	int *pnStudentCnt);
 //-------------------------------------------------------------------------------
-void OpenFile(FILE  **ppfFilePtr, char cFileAdress[]);
+void OpenFile(FILE  **ppfFilePtr, char chFileAdress[]);
 //-------------------------------------------------------------------------------
 void ReplicWithExit();
 //-------------------------------------------------------------------------------
 int OpenFileForSave(FILE  **pfFIlePtr,
-	char cFileAdress[],
+	char chFileAdress[],
 	struct SstdInfo *pStartElement,
 	struct SstdInfo *pHeadStudent,
 	int nStudentCnt,
 	int nFileSateCheck);
 //-------------------------------------------------------------------------------
-int CorrectChooseOption(int nOptions, char *pcAnswer, ...);
+int CorrectChooseOption(int nOptions, char *pchAnswer, ...);
 //-------------------------------------------------------------------------------
 void PrintTableLines();
 //-------------------------------------------------------------------------------
