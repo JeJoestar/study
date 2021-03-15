@@ -1,0 +1,12 @@
+﻿  functions.c
+D:\projects\lab11\lab11\functions.c(22,18): warning C4101: 'tmp': unreferenced local variable
+D:\projects\lab11\lab11\functions.c(269,30): warning C4028: formal parameter 2 different from declaration
+D:\projects\lab11\lab11\functions.c(316,197): warning C4474: 'fprintf' : too many arguments passed for format string
+D:\projects\lab11\lab11\functions.c(316,197): message : placeholders and their parameters expect 9 variadic arguments, but 10 were provided
+D:\projects\lab11\lab11\functions.c(320,199): warning C4474: 'fprintf' : too many arguments passed for format string
+D:\projects\lab11\lab11\functions.c(320,199): message : placeholders and their parameters expect 9 variadic arguments, but 10 were provided
+D:\projects\lab11\lab11\functions.c(332,197): warning C4474: 'fprintf' : too many arguments passed for format string
+D:\projects\lab11\lab11\functions.c(332,197): message : placeholders and their parameters expect 9 variadic arguments, but 10 were provided
+D:\projects\lab11\lab11\functions.c(336,199): warning C4474: 'fprintf' : too many arguments passed for format string
+D:\projects\lab11\lab11\functions.c(336,199): message : placeholders and their parameters expect 9 variadic arguments, but 10 were provided
+  lab11.vcxproj -> D:\projects\lab11\Debug\lab11.exe

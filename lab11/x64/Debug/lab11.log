@@ -1,0 +1,29 @@
+﻿  lab11.c
+D:\projects\lab11\lab11\lab11.c(34,74): warning C4047: 'function': 'int *' differs in levels of indirection from 'int **'
+D:\projects\lab11\lab11\lab11.c(34,62): warning C4024: 'CreateElementAndInsertThisIntoList': different types for formal and actual parameter 3
+D:\projects\lab11\lab11\lab11.c(35,46): warning C4047: 'function': 'int' differs in levels of indirection from 'int *'
+D:\projects\lab11\lab11\lab11.c(35,35): warning C4024: 'PrintStudentTable': different types for formal and actual parameter 3
+D:\projects\lab11\lab11\lab11.c(41,60): warning C4047: 'function': 'int *' differs in levels of indirection from 'int **'
+D:\projects\lab11\lab11\lab11.c(41,48): warning C4024: 'VanishStudentWithTwoBadMarks': different types for formal and actual parameter 3
+D:\projects\lab11\lab11\lab11.c(42,47): warning C4047: 'function': 'int' differs in levels of indirection from 'int *'
+D:\projects\lab11\lab11\lab11.c(42,36): warning C4024: 'PrintStudentTable': different types for formal and actual parameter 3
+D:\projects\lab11\lab11\lab11.c(69,81): warning C4047: 'function': 'int' differs in levels of indirection from 'int *'
+D:\projects\lab11\lab11\lab11.c(69,70): warning C4024: 'OpenFileForSave': different types for formal and actual parameter 5
+D:\projects\lab11\lab11\lab11.c(76,12): warning C4098: 'Choose3': 'void' function returning a value
+D:\projects\lab11\lab11\lab11.c(99,19): warning C4047: 'function': 'char' differs in levels of indirection from 'char *'
+D:\projects\lab11\lab11\lab11.c(99,11): warning C4024: 'Choose2': different types for formal and actual parameter 1
+D:\projects\lab11\lab11\lab11.c(99,33): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[100]'
+D:\projects\lab11\lab11\lab11.c(99,21): warning C4024: 'Choose2': different types for formal and actual parameter 2
+D:\projects\lab11\lab11\lab11.c(99,49): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[2]'
+D:\projects\lab11\lab11\lab11.c(99,35): warning C4024: 'Choose2': different types for formal and actual parameter 3
+D:\projects\lab11\lab11\lab11.c(99,63): warning C4047: 'function': 'char *' differs in levels of indirection from 'char **'
+D:\projects\lab11\lab11\lab11.c(99,51): warning C4024: 'Choose2': different types for formal and actual parameter 4
+D:\projects\lab11\lab11\lab11.c(99,70): warning C4047: 'function': 'SstdInfo *' differs in levels of indirection from 'SstdInfo **'
+D:\projects\lab11\lab11\lab11.c(99,65): warning C4024: 'Choose2': different types for formal and actual parameter 5
+D:\projects\lab11\lab11\lab11.c(99,78): warning C4047: 'function': 'SstdInfo *' differs in levels of indirection from 'SstdInfo **'
+D:\projects\lab11\lab11\lab11.c(99,72): warning C4024: 'Choose2': different types for formal and actual parameter 6
+D:\projects\lab11\lab11\lab11.c(99,107): warning C4047: 'function': 'FILE *' differs in levels of indirection from 'FILE **'
+D:\projects\lab11\lab11\lab11.c(99,94): warning C4024: 'Choose2': different types for formal and actual parameter 8
+D:\projects\lab11\lab11\lab11.c(99,121): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[100]'
+D:\projects\lab11\lab11\lab11.c(99,109): warning C4024: 'Choose2': different types for formal and actual parameter 9
+  lab11.vcxproj -> D:\projects\lab11\x64\Debug\lab11.exe
