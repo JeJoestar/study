@@ -48,6 +48,8 @@ void CreateElementAndInsertThisIntoList(
 //-------------------------------------------------------------------------------
 void FreeMemmoryForStudentsList(struct SstdInfo *pHeadStudent);
 //-------------------------------------------------------------------------------
+int StringFormatCheck(char chDataString[]);
+//-------------------------------------------------------------------------------
 void InsertStudentElementByKeyboard(
 	char chFileString[],
 	char chStrtokLimits[],

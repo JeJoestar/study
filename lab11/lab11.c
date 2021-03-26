@@ -45,7 +45,7 @@ int main()
   CorrectChooseOption(3, &cAnswer, '1', '2', '0');
   switch (cAnswer) {
   case '1': {
-	printf("Enter the info about student or enter \"end\", if you want to stop:\n>:");
+	printf("Enter the info about student or enter \"end\", if you want to stop:\n");
 	InsertStudentElementByKeyboard(cFileString, cStrtokLimits, 
 		pcStrtokPtr, pCur, &pHead, &nStudentCnt);
 	PrintStudentTable(pCur, pHead, nStudentCnt);
@@ -82,7 +82,7 @@ int main()
 	//CHOOSE3
   do {
 	printf("Anything else?\n");
-	printf("1)Add an element by keyboard.\n2)Vanish vanish students with two \"2\" marks\n3)Save table. Exit.\n0)No.\n>:");
+	printf("1)Add an element by keyboard.\n2)Vanish students with two \"2\" marks\n3)Save table. Exit.\n0)No.\n>:");
 	CorrectChooseOption(4, &cAnswer, '1', '2', '3', '0');
 	switch (cAnswer) {
 	  case '1': {
@@ -97,14 +97,14 @@ int main()
 	  }
 	  case '3': {
 		printf("Which file is it?\n");
-		printf("1)New.\n0)Already created.\n:>");
-		CorrectChooseOption(2, &cAnswer, '1', '0');
+		printf("1)New.\n2)Already created.\n:>");
+		CorrectChooseOption(2, &cAnswer, '1', '2');
 		switch (cAnswer) {
 		  case '1': {
 		    nStateFileChecker = 1;
 		    break;
 		  }
-		  case '0': {
+		  case '2': {
 		    nStateFileChecker = 0;
 		    break;
 		  }
@@ -124,6 +124,6 @@ int main()
 		return 0;
 	  }
 	}
-  } while (cAnswer == '0');
+  } while (cAnswer != '0');
   return 0;
 }

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <conio.h>
+#include <ctype.h>
 #include <string.h>
 #include <stdarg.h>
 #include "functions.h"
@@ -60,6 +61,61 @@ void InsertElementIntoList(struct SstdInfo* pCurStudent, struct SstdInfo** ppSki
 	(pCurStudent)->pNext = pTmpStudent;
 }
 //-------------------------------------------------------------------------------
+//
+//Перевірка дотримання формату вводу в стрічці для зчитування даних в елемент 
+//списку
+//
+int StringFormatCheck(char chDataString[]) {
+	char* pchStrtokPtr = NULL;
+	char chDataStringCpy[100];
+	strcpy(chDataStringCpy, chDataString);
+	char chTestSurname[20], chTestName[20], chTestBirth[11], chStrtokLimits[] = " ";
+	int nTestMarks[6];
+	pchStrtokPtr = strtok(chDataStringCpy, chStrtokLimits);
+	strcpy(chTestSurname, pchStrtokPtr);
+	for (int i = 0; i < strlen(pchStrtokPtr); i++) {
+		if (!isalpha(chTestSurname[i])) {
+			return 1;
+		}
+	}
+	pchStrtokPtr = strtok(NULL, chStrtokLimits);
+	strcpy(chTestName, pchStrtokPtr);
+	for (int i = 0; i < strlen(pchStrtokPtr); i++) {
+		if (!isalpha(chTestName[i])) {
+			return 1;
+		}
+	}
+	pchStrtokPtr = strtok(NULL, chStrtokLimits);
+	strcpy(chTestBirth, pchStrtokPtr);
+	if (strlen(chTestBirth) < 10) {
+		return 1;
+	}
+	else {
+		for (int i = 0; i < 10; i++) {
+			if (i == 2 || i == 5) {
+				if (chTestBirth[i] != '.') {
+					return 1;
+				}
+			}
+			else {
+				if (!isdigit(chTestBirth[i])) {
+					return 1;
+				}
+			}
+		}
+	}
+	for (int j = 0; j < NUM_AMOUNT_OF_MARKS; j++) {
+		pchStrtokPtr = strtok(NULL, chStrtokLimits);
+		if (isdigit(*pchStrtokPtr)) {
+			nTestMarks[j] = atoi(pchStrtokPtr);
+		}
+		else {
+			return 1;
+		}
+	}
+	return 0;
+}
+//-------------------------------------------------------------------------------
 //Зчитування списку з текстового файлу
 //
 void InsertStudentElementFromFile(
@@ -73,6 +129,10 @@ void InsertStudentElementFromFile(
   static sEnters = 0;
   int nStudentCnt = sEnters;
   while (fgets(chFileString, 100, pfOpenedFile)) {
+	  if (StringFormatCheck(chFileString) == 1) {
+		  printf("\nError. Incorrect format of data. Try again.\n");
+		  continue;
+	  }
 	pchStrtokPtr = strtok(chFileString, chStrtokLimits);
 	strcpy(pCur->chSurname, pchStrtokPtr);
 	pchStrtokPtr = strtok(NULL, chStrtokLimits);
@@ -121,10 +181,15 @@ void InsertStudentElementByKeyboard(
   static sEnters = 0;
   int nStudentCnt = sEnters;
   while (1) {
+	printf(">:");
 	rewind(stdin);
 	fgets(chFileString, 100, stdin);
 	if (strstr(chFileString, "end")) {
 	  break;
+	}
+	if (StringFormatCheck(chFileString) == 1) {
+	  printf("Error. Incorrect format of data. Try again.\n");
+	  continue;
 	}
 	pchStrtokPtr = strtok(chFileString, chStrtokLimits);
 	strcpy(pCurStudent->chSurname, pchStrtokPtr);
@@ -146,19 +211,19 @@ void InsertStudentElementByKeyboard(
 	if (pCurStudent != (*pHeadStudent)) {
 	  SortElement(pCurStudent, pHeadStudent);
 	}
-	struct SstdInfo *pNextDtudent = (struct SstdInfo*)malloc(sizeof(struct SstdInfo));
+	struct SstdInfo *pNextStudent = (struct SstdInfo*)malloc(sizeof(struct SstdInfo));
 	pCurStudent = (*pHeadStudent);
 	for (int k = 0; k < nStudentCnt - 1; k++) {
-	  if (pCurStudent->pNext) {
-		  pCurStudent = pCurStudent->pNext;
+		if (pCurStudent->pNext) {
+			pCurStudent = pCurStudent->pNext;
+		}
 	}
-	pNextDtudent->pNext = NULL;
-	pCurStudent->pNext = pNextDtudent;
-	pCurStudent = pNextDtudent;
-	}
+	pNextStudent->pNext = NULL;
+	pCurStudent->pNext = pNextStudent;
+	pCurStudent = pNextStudent;
+  }
     *pnStudentCnt = nStudentCnt;
     sEnters = sEnters + 1;
-  }
 }
 //-------------------------------------------------------------------------------
 //Друк меж таблиці
