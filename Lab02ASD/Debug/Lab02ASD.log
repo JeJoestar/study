@@ -1,0 +1,4 @@
+﻿  MyForm.cpp
+D:\ADS\Lab02\Lab02ASD\Lab02ASD\MyForm.cpp(12,33): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Lab02ASD.vcxproj -> D:\ADS\Lab02\Lab02ASD\Debug\Lab02ASD.exe

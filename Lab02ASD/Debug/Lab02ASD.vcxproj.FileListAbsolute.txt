@@ -1,0 +1,3 @@
+D:\ADS\Lab02\Lab02ASD\Lab02ASD\Debug\Lab02ASD.vcxprojAssemblyReference.cache
+D:\ADS\Lab02\Lab02ASD\Lab02ASD\Debug\Lab02ASD.MyForm.resources
+D:\ADS\Lab02\Lab02ASD\Lab02ASD\Debug\Lab02ASD.vcxproj.GenerateResource.cache
